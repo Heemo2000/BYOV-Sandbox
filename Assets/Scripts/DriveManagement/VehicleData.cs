@@ -1,6 +1,7 @@
 
 namespace Game.DriveManagement
 {
+    [System.Serializable]
     public class VehicleData
     {
         public string name = "Test";
