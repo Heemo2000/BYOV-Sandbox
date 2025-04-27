@@ -57,6 +57,9 @@ namespace Game.DriveManagement
         [Min(0.1f)]
         [SerializeField] private float throttleMinSpeedPercent = 0.4f;
 
+        [Min(1.1f)]
+        [SerializeField] private float throttleSpeedMultiplier = 1.0f;
+
         [Header("Other Settings: ")]
         [Min(250.0f)]
         [SerializeField] private float mass = 1000.0f;
@@ -159,7 +162,18 @@ namespace Game.DriveManagement
         public float GetNormalizedSpeed()
         {
             return Mathf.Clamp01(Mathf.Abs(GetCurrentSpeed()) /
-                                                 ((currentInput.y >= 0.0f) ? forwardSpeed : reverseSpeed));
+                                                 ((currentInput.y >= 0.0f) ? GetCurrentForwardSpeed() : reverseSpeed));
+        }
+
+        private float GetCurrentForwardSpeed()
+        {
+            if(shouldThrottle)
+            {
+                return forwardSpeed * throttleSpeedMultiplier;
+            }
+
+            return forwardSpeed;
+
         }
 
         private void ApplyGravity()
@@ -221,10 +235,10 @@ namespace Game.DriveManagement
 
             //Debug.Log("Normalized speed: " + normalizedSpeed);
 
-            float availaibleTorque = (currentInput.y != 0.0f) ? powerCurve.Evaluate(normalizedSpeed) * maxTorque * currentInput.y : 0.0f;
+            float availaibleTorque = powerCurve.Evaluate(normalizedSpeed) * maxTorque * input.y;
             //Debug.Log("Availaible torque: " + availaibleTorque);
 
-            Vector3 accelerationForce = (normalizedSpeed < 1.0f) ? accelDir * availaibleTorque : Vector3.zero;
+            Vector3 accelerationForce = (normalizedSpeed < 1.0f && input.y != 0.0f) ? accelDir * availaibleTorque : Vector3.zero;
 
             //Debug.Log("Acceleration Force: " + accelerationForce);
 
@@ -236,7 +250,7 @@ namespace Game.DriveManagement
 
         private void HandleThrottle()
         {
-            if(throttlePressed && !shouldThrottle && GetNormalizedSpeed() >= throttleMinSpeedPercent)
+            if(throttlePressed && input.y > 0.0f && GetNormalizedSpeed() >= throttleMinSpeedPercent)
             {
                 shouldThrottle = true;
             }

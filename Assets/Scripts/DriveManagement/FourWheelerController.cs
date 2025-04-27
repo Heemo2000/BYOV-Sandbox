@@ -19,7 +19,9 @@ namespace Game.DriveManagement
         public override void Deactivate()
         {
             //Deactive the camera, switch the player's camera and make four wheeler stop.
-            followCamera.Deactivate();       
+            followCamera.Deactivate();
+            wheeler.Input = Vector2.zero;
+            wheeler.ThrottlePressed = false;
         }
 
         public override InteractableType GetInteractableType()
@@ -31,6 +33,7 @@ namespace Game.DriveManagement
         {
             //Handle four wheeler input here, acceleration, steering and throttle.
             wheeler.Input = new Vector2(store.InputX, store.InputY);
+            wheeler.ThrottlePressed = store.ThrottlePressed;
             followCamera.HandleInput(store.RotateX, store.RotateY, false);
         }
 

@@ -15,12 +15,21 @@ namespace Game.PlayerManagement
         private Vector2 moveInput;
         private Vector2 rotateInput;
         private Coroutine interactCoroutine;
+        private Coroutine throttleCoroutine;
 
         private void OnInteractPressed(InputAction.CallbackContext context)
         {
             if(interactCoroutine == null)
             {
                 interactCoroutine = StartCoroutine(MakeInteractEnabled());
+            }
+        }
+
+        private void OnThrottleStarted(InputAction.CallbackContext context)
+        {
+            if(throttleCoroutine == null)
+            {
+                throttleCoroutine = StartCoroutine(MakeThrottleEnabled());
             }
         }
 
@@ -32,6 +41,16 @@ namespace Game.PlayerManagement
 
             interactCoroutine = null;
         }
+
+        private IEnumerator MakeThrottleEnabled()
+        {
+            inputStore.ThrottlePressed = true;
+            yield return new WaitForSeconds(0.01f);
+            inputStore.ThrottlePressed = false;
+
+            throttleCoroutine = null;
+        }
+
         private void Awake()
         {
             inputStore = new InputStore();
@@ -43,6 +62,7 @@ namespace Game.PlayerManagement
         {
             gameControls.Enable();
             gameControls.MainActionMap.Interact.started += OnInteractPressed;
+            gameControls.MainActionMap.Throttle.started += OnThrottleStarted;
         }
 
         
@@ -65,6 +85,8 @@ namespace Game.PlayerManagement
         private void OnDestroy()
         {
             gameControls.Disable();
+            gameControls.MainActionMap.Interact.started -= OnInteractPressed;
+            gameControls.MainActionMap.Throttle.started -= OnThrottleStarted;
         }
     }
 }

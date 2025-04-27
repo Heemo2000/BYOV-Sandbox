@@ -20,6 +20,7 @@ namespace Game.InteractManagement
         
         private Interactable currentInteractable;
         private Interactable playerMovement;
+        private RaycastHit[] hits;
 
         public void HandleInput(InputStore store)
         {
@@ -32,7 +33,9 @@ namespace Game.InteractManagement
                 {
                     currentInteractable.Deactivate();
                     currentInteractable.enabled = false;
-
+                    currentInteractable.transform.parent = interactable.EnterLocation.transform;
+                    currentInteractable.transform.localPosition = Vector3.zero;
+                    
                     interactable.enabled = true;
                     interactable.Activate();
                     currentInteractable = interactable;
@@ -40,6 +43,7 @@ namespace Game.InteractManagement
                 else if(currentID != playerID)
                 {
                     currentInteractable.Deactivate();
+                    playerMovement.transform.parent = null;
                     playerMovement.enabled = true;
                     playerMovement.Activate();
 
@@ -50,18 +54,35 @@ namespace Game.InteractManagement
             currentInteractable.HandleInput(store);
         }
 
+        private Vector3 GetActualLookOffset()
+        {
+            if(lookCamera == null)
+            {
+                return Vector3.zero;
+            }
+
+            return lookCamera.transform.right * checkOffset.x +
+                   lookCamera.transform.up * checkOffset.y +
+                   lookCamera.transform.forward * checkOffset.z;
+        }
+
         private bool IsInteractableFound(out Interactable interactable)
         {
-            Vector3 checkPosition = lookCamera.transform.position + checkOffset;
+            Vector3 checkPosition = lookCamera.transform.position + GetActualLookOffset();
 
-            if(Physics.SphereCast(checkPosition, 
-                                  checkRadius, 
-                                  lookCamera.transform.forward, 
-                                  out RaycastHit hit, 
-                                  checkDistance, 
-                                  checkLayerMask.value))
+            int count = Physics.SphereCastNonAlloc(checkPosition,
+                                  checkRadius,
+                                  lookCamera.transform.forward,
+                                  hits,
+                                  checkDistance,
+                                  checkLayerMask.value);
+
+            Debug.Log("Hits Count: " + count);
+
+            if (count > 0)
             {
-                if(hit.transform.TryGetComponent<Interactable>(out interactable))
+                Debug.Log("Hits 0: " + hits[0].transform.name);
+                if (hits[0].transform.TryGetComponent<Interactable>(out interactable))
                 {
                     return true;
                 }
@@ -74,6 +95,7 @@ namespace Game.InteractManagement
         private void Awake()
         {
             playerMovement = GetComponent<PlayerMovement>();
+            hits = new RaycastHit[1];
         }
 
         private void Start()
@@ -89,7 +111,7 @@ namespace Game.InteractManagement
             {
                 return;
             }
-            Vector3 origin = lookCamera.transform.position + checkOffset;
+            Vector3 origin = lookCamera.transform.position + GetActualLookOffset();
 
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(origin, checkRadius);

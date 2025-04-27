@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Game.InputManagement
 {
+    [System.Serializable]
     public struct InputStore
     {
         private float inputX;

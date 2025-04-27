@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1428536185628886213}
   - component: {fileID: 668643744064914943}
   - component: {fileID: 8692867054121448626}
+  - component: {fileID: 8764549139004017508}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -56,13 +57,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 4
+  m_Radius: 1
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!114 &1428536185628886213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,6 +82,36 @@ MonoBehaviour:
   rotateSpeed: 150
   pickupRotateSpeedTime: 0.2
   firstPersonCamera: {fileID: 6642419225097743656}
+  OnMovementActivate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8764549139004017508}
+        m_TargetAssemblyTypeName: Game.PlayerManagement.PlayerVisual, Assembly-CSharp
+        m_MethodName: EnableMeshes
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnMovementDeactivate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8764549139004017508}
+        m_TargetAssemblyTypeName: Game.PlayerManagement.PlayerVisual, Assembly-CSharp
+        m_MethodName: DisableMeshes
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &668643744064914943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,11 +138,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookCamera: {fileID: 6642419225097743656}
   checkRadius: 0.05
-  checkDistance: 4
+  checkDistance: 8
   checkOffset: {x: 0, y: 0, z: 0.5}
   checkLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 128
+--- !u!114 &8764549139004017508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364848614609449365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c154f31a2e9e30428c6338afabc0bd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshes:
+  - {fileID: 3161730340132533604}
+  - {fileID: 4720815493075127908}
 --- !u!1 &3179312494512400340
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,8 +185,8 @@ Transform:
   m_GameObject: {fileID: 3179312494512400340}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2639713101730148086}
@@ -225,7 +271,7 @@ Transform:
   m_GameObject: {fileID: 4967463475400099906}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.34, z: 0.427}
+  m_LocalPosition: {x: 0, y: 2.68, z: 0.427}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -244,7 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Priority:
-    Enabled: 0
+    Enabled: 1
     m_Value: 0
   OutputChannel: 1
   StandbyUpdate: 2
@@ -320,9 +366,9 @@ Transform:
   m_GameObject: {fileID: 6590295558354931050}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.345, z: 0.44}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 2.69, z: 0.88}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2639713101730148086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

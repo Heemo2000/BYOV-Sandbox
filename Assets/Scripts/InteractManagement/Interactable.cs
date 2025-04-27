@@ -5,6 +5,8 @@ namespace Game.InteractManagement
 {
     public abstract class Interactable : MonoBehaviour
     {
+        [SerializeField] private Transform enterLocation;
+        public Transform EnterLocation { get => enterLocation; }
 
         public abstract InteractableType GetInteractableType();
         public abstract void Activate();

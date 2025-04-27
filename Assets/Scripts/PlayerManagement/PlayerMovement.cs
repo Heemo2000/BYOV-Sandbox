@@ -2,6 +2,7 @@ using UnityEngine;
 using Game.InteractManagement;
 using Game.InputManagement;
 using Game.CameraManagement;
+using UnityEngine.Events;
 
 namespace Game.PlayerManagement
 {
@@ -28,6 +29,11 @@ namespace Game.PlayerManagement
         [Header("Camera Settings: ")]
         [SerializeField] private FirstPersonCamera firstPersonCamera;
 
+        [Header("Activation And Deactivation Settings: ")]
+        public UnityEvent OnMovementActivate;
+
+        public UnityEvent OnMovementDeactivate;
+
         private CharacterController controller;
         
         private float velocityY = 0.0f;
@@ -47,6 +53,7 @@ namespace Game.PlayerManagement
         {
             controller.enabled = true;
             firstPersonCamera.Activate();
+            OnMovementActivate?.Invoke();
         }
 
         public override void HandleInput(InputStore store)
@@ -74,6 +81,7 @@ namespace Game.PlayerManagement
         {
             controller.enabled = false;
             firstPersonCamera.Deactivate();
+            OnMovementDeactivate?.Invoke();
         }
 
         private void HandleMove(float inputX, float inputY, float rotateX)
