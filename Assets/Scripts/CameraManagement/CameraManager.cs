@@ -30,6 +30,14 @@ namespace Game.CameraManagement
         {
             MakeCameraImportant(initialCamera);
         }
+
+        public void RegisterCamera(BaseCamera camera)
+        {
+            if(camera != null && !cameras.Contains(camera))
+            {
+                cameras.Add(camera);
+            }
+        }
         private void Awake()
         {
             cameras = new List<BaseCamera>();

@@ -80,11 +80,15 @@ namespace Game.UI
                 Page page = pageStack.Pop();
                 page.Exit(playAnimation);
 
-                Page newCurrentPage = pageStack.Peek();
-                if (newCurrentPage.exitOnNewPagePush)
+                if(pageStack.Count > 0)
                 {
-                    newCurrentPage.Enter(playAnimation);
+                    Page newCurrentPage = pageStack.Peek();
+                    if (newCurrentPage.exitOnNewPagePush)
+                    {
+                        newCurrentPage.Enter(playAnimation);
+                    }
                 }
+                
             }
         }
 

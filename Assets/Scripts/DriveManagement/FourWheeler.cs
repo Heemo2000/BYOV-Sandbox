@@ -130,6 +130,24 @@ namespace Game.DriveManagement
         public float ForwardSpeed { get => forwardSpeed; set => forwardSpeed = value; }
         public float ReverseSpeed { get => reverseSpeed; set => reverseSpeed = value; }
         public bool ThrottlePressed { get => throttlePressed; set => throttlePressed = value; }
+        public float MaxTorque { get => maxTorque; set => maxTorque = value; }
+        public float TurnRadius { get => turnRadius; set => turnRadius = value; }
+        public float SpringStrength { get => springStrength; set => springStrength = value; }
+        public float DamperStrength { get => damperStrength; set => damperStrength = value; }
+
+        public void SetTopSpeed(float topSpeed)
+        {
+            forwardSpeed = topSpeed;
+            reverseSpeed = topSpeed + 1.0f;
+        }
+
+        public void SetTireTraction(float tireTraction)
+        {
+            wheelFL.tireGripFactor = tireTraction;
+            wheelFR.tireGripFactor = tireTraction;
+            wheelRL.tireGripFactor = tireTraction;
+            wheelRR.tireGripFactor = tireTraction;
+        }
 
         public float GetNormalLeftWheelAngle()
         {

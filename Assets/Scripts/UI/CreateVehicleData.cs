@@ -12,12 +12,13 @@ namespace Game.UI
         public Button leftVehicleTypeIndexBtn;
         public TMP_Text vehicleTypeField;
         public Button rightVehicleIndexBtn;
-        public Button goBackToMainBtn;
+        public Button createBtn;
+        public RawImage vehicleRawImage;
 
         public Slider topSpeedSlider;
         public Slider accelerationSlider;
         public Slider turnRadiusSlider;
-        public Slider suspensionStrengthSlider;
+        public Slider springStrengthSlider;
         public Slider damperStrengthSlider;
         public Slider tireTractionSlider;
     }

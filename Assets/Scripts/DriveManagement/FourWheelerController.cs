@@ -2,6 +2,7 @@ using UnityEngine;
 using Game.InteractManagement;
 using Game.InputManagement;
 using Game.CameraManagement;
+using Game.InversionOfControlManagement;
 
 namespace Game.DriveManagement
 {
@@ -45,13 +46,11 @@ namespace Game.DriveManagement
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
+            ServiceLocator.ForSceneOf(this).Get(out CameraManager manager);
+            if(manager != null)
+            {
+                manager.RegisterCamera(followCamera);
+            }
         }
     }
 }
