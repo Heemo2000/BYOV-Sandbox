@@ -171,6 +171,7 @@ GameObject:
   - component: {fileID: 5462400238964581084}
   - component: {fileID: 2268916554512587298}
   - component: {fileID: 8146464057589737945}
+  - component: {fileID: 1627592726318986454}
   m_Layer: 7
   m_Name: SportsCar
   m_TagString: Untagged
@@ -512,6 +513,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enterLocation: {fileID: 5361017312388643667}
   followCamera: {fileID: 7465437615619453590}
+--- !u!65 &1627592726318986454
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6014842740896079910}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.657173, y: 3.1469722, z: 11.975098}
+  m_Center: {x: 0, y: 1.7227414, z: -0.04460144}
 --- !u!1 &6721607883908695998
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,10 +672,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1894404873762196829, guid: ae918a24f13c5784ea89fc59b6e39038, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5754023097158510040}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae918a24f13c5784ea89fc59b6e39038, type: 3}
 --- !u!4 &1568118544498461301 stripped
 Transform:
@@ -680,32 +699,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1894404873762034037, guid: ae918a24f13c5784ea89fc59b6e39038, type: 3}
   m_PrefabInstance: {fileID: 1119519097601809162}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1568118544498890327 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1894404873762196829, guid: ae918a24f13c5784ea89fc59b6e39038, type: 3}
-  m_PrefabInstance: {fileID: 1119519097601809162}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &5754023097158510040
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1568118544498890327}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.8142571, y: 1.452992, z: 6.01705}
-  m_Center: {x: 0, y: 0.18016315, z: 0.4847026}
 --- !u!1001 &7496779480190150918
 PrefabInstance:
   m_ObjectHideFlags: 0

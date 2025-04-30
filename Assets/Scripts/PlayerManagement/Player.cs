@@ -36,7 +36,7 @@ namespace Game.PlayerManagement
         private IEnumerator MakeInteractEnabled()
         {
             inputStore.InteractPressed = true;
-            yield return new WaitForSeconds(0.005f);
+            yield return null;
             inputStore.InteractPressed = false;
 
             interactCoroutine = null;

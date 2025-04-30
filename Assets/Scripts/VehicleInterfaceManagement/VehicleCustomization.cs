@@ -57,13 +57,14 @@ namespace Game.VehicleInterfaceManagement
         [SerializeField] private SpawnVehicleData[] spawnVehicleDatas;
         [SerializeField] private ShowVehicleData[] showVehicleDatas;
         [SerializeField] private Transform spawnVehicleOrigin;
+        [SerializeField] private float spawnVehicleCheckRadius = 2.0f;
+        [SerializeField] private LayerMask spawnVehicleLayerMask;
         [SerializeField] private FirstPersonCamera firstPersonCamera;
 
         //private JsonDataService dataService;
         //private VehicleDatas datas;
         private int currentCreateVehicleTypeIndex = -1;
-
-        //private List<FourWheeler> selectableVehicles;
+        private Collider[] temp;
         public override void Activate()
         {
             ServiceLocator.ForSceneOf(this).Get(out CameraManager manager);
@@ -173,6 +174,15 @@ namespace Game.VehicleInterfaceManagement
 
         private void CreateVehicle()
         {
+            int count = Physics.OverlapSphereNonAlloc(spawnVehicleOrigin.position,
+                                                      spawnVehicleCheckRadius,
+                                                      temp,
+                                                      spawnVehicleLayerMask.value);
+            if(count > 0)
+            {
+                Destroy(temp[0].gameObject);
+            }
+
             var vehicle = Instantiate(spawnVehicleDatas[currentCreateVehicleTypeIndex].prefab, 
                                       spawnVehicleOrigin.position, 
                                       spawnVehicleOrigin.rotation);
@@ -190,7 +200,6 @@ namespace Game.VehicleInterfaceManagement
         private void Awake()
         {
             //dataService = new JsonDataService();
-            //selectableVehicles = new List<FourWheeler>();
 
             /*if(!dataService.IsFileExists(VEHICLE_DATA_FILE_NAME))
             {
@@ -202,12 +211,18 @@ namespace Game.VehicleInterfaceManagement
             {
                 datas = dataService.LoadData<VehicleDatas>(VEHICLE_DATA_FILE_NAME, true);
             }*/
-            
+            temp = new Collider[1];
         }
 
         private void Start()
         {
             Setup();
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(spawnVehicleOrigin.position, spawnVehicleCheckRadius * 2.0f);
         }
     }
 }

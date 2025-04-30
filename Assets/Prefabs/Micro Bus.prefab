@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 7285571057809980239}
   - component: {fileID: 4434974456187888188}
   - component: {fileID: 54712687740061874}
+  - component: {fileID: 3132062089338198799}
   m_Layer: 7
   m_Name: Micro Bus
   m_TagString: Untagged
@@ -385,6 +386,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enterLocation: {fileID: 4149217030177917945}
   followCamera: {fileID: 7191189067298197816}
+--- !u!65 &3132062089338198799
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4794307628388557384}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.704788, y: 5.0503206, z: 13.798317}
+  m_Center: {x: 0, y: 2.5786939, z: 0.35705948}
 --- !u!1 &4842403321293543465
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,37 +708,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6287319582821184463, guid: 77653068d1cd5254c82b4e0048353235, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1298761569203819683}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77653068d1cd5254c82b4e0048353235, type: 3}
---- !u!1 &5136698367370012211 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6287319582821184463, guid: 77653068d1cd5254c82b4e0048353235, type: 3}
-  m_PrefabInstance: {fileID: 1155239457419613692}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1298761569203819683
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5136698367370012211}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.8661203, y: 2.5300105, z: 6.9494696}
-  m_Center: {x: 0.000000834465, y: 0.9280666, z: 0.16189778}
 --- !u!4 &5136698367370115601 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6287319582821478381, guid: 77653068d1cd5254c82b4e0048353235, type: 3}

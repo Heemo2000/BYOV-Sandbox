@@ -134,6 +134,7 @@ namespace Game.DriveManagement
         public float TurnRadius { get => turnRadius; set => turnRadius = value; }
         public float SpringStrength { get => springStrength; set => springStrength = value; }
         public float DamperStrength { get => damperStrength; set => damperStrength = value; }
+        public bool ShouldThrottle { get => shouldThrottle; }
 
         public void SetTopSpeed(float topSpeed)
         {

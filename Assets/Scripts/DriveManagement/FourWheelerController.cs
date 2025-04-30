@@ -35,7 +35,7 @@ namespace Game.DriveManagement
             //Handle four wheeler input here, acceleration, steering and throttle.
             wheeler.Input = new Vector2(store.InputX, store.InputY);
             wheeler.ThrottlePressed = store.ThrottlePressed;
-            followCamera.HandleInput(store.RotateX, store.RotateY, false);
+            followCamera.HandleInput(store.RotateX, store.RotateY, wheeler.ShouldThrottle);
         }
 
         private void Awake()
